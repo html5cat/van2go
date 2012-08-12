@@ -1,6 +1,6 @@
 if (Meteor.is_client) {
   Template.hello.greeting = function () {
-    return "Welcome to van2go.";
+    return car2go.locations;
   };
 
   Template.hello.events = {
