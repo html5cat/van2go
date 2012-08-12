@@ -46,7 +46,7 @@ body {
 
 .details, .none {
     font-weight: bold;
-    font-size: 2em;
+    /*font-size: 2em;*/
     border-style: dashed none none none;
     border-color: #ccc;
     border-width: 4px;

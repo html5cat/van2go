@@ -18,7 +18,11 @@
   {{#if selected_location}}
   <div class="details">
     <div class="name">{{selected_location}}</div>
-    <input type="button" class="inc" value="Give 5 points" />
+      <ol>
+        {{#each cars}}
+          {{> car}}
+        {{/each}}
+      </ol>
   </div>
   {{/if}}
 
@@ -33,4 +37,9 @@
     <span class="score">{{score}}</span>
   </div>
 </template>
+
+<template name="car">
+  <li>{{name}}</li>
+</template>
+
 

@@ -2,6 +2,10 @@ Template.van2go.locations = function () {
   return Locations.find({}, {sort: {name: 1}});
 };
 
+Template.van2go.cars = function () {
+  return Cars.find({}, {sort: {name: 1}});
+};
+
 Template.van2go.selected_location = function () {
   var location = Locations.findOne(Session.get("selected_location"));
   return location && location.name;
