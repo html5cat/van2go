@@ -3,43 +3,42 @@
 </head>
 
 <body>
-  <div id="outer">
-    {{> van2go}}
-  </div>
+    <div id="outer">
+        {{> van2go}}
+    </div>
 </body>
 
 <template name="van2go">
-  <div class="leaderboard">
-    {{#each locations}}
-      {{> location}}
-    {{/each}}
-  </div>
-
-  {{#if selected_location}}
-  <div class="details">
-    <div class="name">{{selected_location}}</div>
-      <ol>
-        {{#each cars}}
-          {{> car}}
+    <div class="leaderboard">
+        {{#each locations}}
+            {{> location}}
         {{/each}}
-      </ol>
-  </div>
-  {{/if}}
+    </div>
 
-  {{#unless selected_location}}
-  <div class="none">Click a city to select</div>
-  {{/unless}}
+    {{#if selected_location}}
+        <div class="details">
+            <div class="name">{{selected_location}} - {{selected_location_carCount}}</div>
+            <ol>
+                {{#each cars}}
+                    {{> car}}
+                {{/each}}
+            </ol>
+        </div>
+    {{/if}}
+
+    {{#unless selected_location}}
+        <div class="none">Click a city to select</div>
+    {{/unless}}
 </template>
 
 <template name="location">
-  <div class="player {{selected}}">
-    <span class="name">{{name}}</span>
-    <span class="score">{{score}}</span>
-  </div>
+    <div class="player {{selected}}">
+        <span class="name">{{name}}</span>
+        <span class="id">{{id}}</span>
+        <span class="count">{{carCount}}</span>
+    </div>
 </template>
 
 <template name="car">
-  <li>{{name}}</li>
+    <li>{{name}}</li>
 </template>
-
-
