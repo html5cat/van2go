@@ -4,14 +4,14 @@
 
 <body>
   <div id="outer">
-    {{> leaderboard}}
+    {{> van2go}}
   </div>
 </body>
 
-<template name="leaderboard">
+<template name="van2go">
   <div class="leaderboard">
-    {{#each players}}
-      {{> player}}
+    {{#each locations}}
+      {{> location}}
     {{/each}}
   </div>
 
@@ -27,7 +27,7 @@
   {{/unless}}
 </template>
 
-<template name="player">
+<template name="location">
   <div class="player {{selected}}">
     <span class="name">{{name}}</span>
     <span class="score">{{score}}</span>

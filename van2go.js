@@ -1,1 +1,1 @@
-Cars = new Meteor.Collection("cars");
+Locations = new Meteor.Collection("locations");
