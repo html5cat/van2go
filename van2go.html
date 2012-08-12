@@ -15,15 +15,15 @@
     {{/each}}
   </div>
 
-  {{#if selected_name}}
+  {{#if selected_location}}
   <div class="details">
-    <div class="name">{{selected_name}}</div>
+    <div class="name">{{selected_location}}</div>
     <input type="button" class="inc" value="Give 5 points" />
   </div>
   {{/if}}
 
-  {{#unless selected_name}}
-  <div class="none">Click a player to select</div>
+  {{#unless selected_location}}
+  <div class="none">Click a city to select</div>
   {{/unless}}
 </template>
 

@@ -2,14 +2,14 @@ Template.van2go.locations = function () {
   return Locations.find({}, {sort: {name: 1}});
 };
 
-// Template.van2go.selected_name = function () {
-//   var player = Players.findOne(Session.get("selected_player"));
-//   return player && player.name;
-// };
+Template.van2go.selected_location = function () {
+  var location = Locations.findOne(Session.get("selected_location"));
+  return location && location.name;
+};
 
-// Template.player.selected = function () {
-//   return Session.equals("selected_player", this._id) ? "selected" : '';
-// };
+Template.location.selected = function () {
+  return Session.equals("selected_location", this._id) ? "selected" : '';
+};
 
 // Template.van2go.events = {
 //   'click input.inc': function () {
@@ -17,8 +17,8 @@ Template.van2go.locations = function () {
 //   }
 // };
 
-// Template.player.events = {
-//   'click': function () {
-//     Session.set("selected_player", this._id);
-//   }
-// };
+Template.location.events = {
+  'click': function () {
+    Session.set("selected_location", this._id);
+  }
+};
