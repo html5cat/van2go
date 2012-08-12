@@ -21,7 +21,7 @@ Template.van2go.selected_location = function () {
 
 Template.van2go.selected_location_carCount = function () {
     var locationId = Session.get("selected_location")
-    var result = Cars.find({locationId: locationId}).count();
+    // var result = Cars.find({locationId: locationId}).count();
     return result
 };
 
@@ -30,7 +30,7 @@ Template.location.selected = function () {
 };
 
 Template.location.carCount = function () {
-    var result = Cars.find({locationId: this.id}).count();
+    // var result = Cars.find({locationId: this.id}).count();
     // console.log('carCount', result);
     return result;
 };

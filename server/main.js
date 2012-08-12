@@ -26,15 +26,14 @@ Meteor.startup(function() {
  */
 function getCarsUrl(location) {
     var location = location.name.toLowerCase().replace(/\s/g, '');
+
     return 'http://www.car2go.com/api/v2.1/vehicles?&oauth_consumer_key=HandiCar&loc=' + location + '&format=json'
 }
 
 
 function updateCars() {
     Locations.find().forEach(function(location) {
-        var url = getCarsUrl(location)
-
-        // console.log('updateCars:updating:', url)
+        var url = getCarsUrl(location);
 
         Meteor.http.get(url, function(err, response) {
             if (err) {
@@ -48,17 +47,17 @@ function updateCars() {
             var placemarks = data.placemarks
 
             // Sync the cars for this location.
-            Cars.remove({locationId: 4})
+            Cars.remove({locationId: location.id})
 
             for (var i = 0; i < placemarks.length; i++) {
                 var placemark = placemarks[i];
                 Cars.insert({
-                    name: placemark.name, 
-                    locationId: 4
+                    name: placemark.name,
+                    locationId: location.id
                 });
             }
 
             // console.log('updateCars:http: Added Cars -', placemarks.length);
         });
-    });  
+    });
 }
