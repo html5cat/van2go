@@ -1,5 +1,5 @@
 function getSelectedLocation() {
-    var locationId = Session.get("selected_location")
+    var locationId = Session.get("selected_location");
     if (!locationId) return null;
     return Locations.findOne({id: locationId});
 }
@@ -26,13 +26,14 @@ Template.van2go.selected_location_carCount = function () {
 };
 
 Template.location.selected = function () {
-    return Session.equals("selected_location", this._id) ? "selected" : '';
+    return Session.equals("selected_location", this.id) ? "selected" : '';
 };
 
 Template.location.carCount = function () {
     // var result = Cars.find({locationId: this.id}).count();
     // console.log('carCount', result);
-    return result;
+    // return result;
+    return -1;
 };
 
 

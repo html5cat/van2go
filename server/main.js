@@ -2,8 +2,8 @@
  * On startup, populate the Locations database.
  */
 Meteor.startup(function() {
-    //if (Locations.find().count() === 0) {
-    if (1) {
+    if (Locations.find().count() === 0) {
+    // if (1) {
         for (var i = 0; i < car2go.locations.length; i++) {
             var location = car2go.locations[i]
 
@@ -17,7 +17,7 @@ Meteor.startup(function() {
         }
     }
 
-    updateCars()
+        // updateCars()
 });
 
 
