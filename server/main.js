@@ -55,15 +55,15 @@ function updateCars() {
             Locations.update({id: location.id}, {$set: {carCount: carCount} });
 
             // Sync the cars for this location.
-            // Cars.remove({locationId: location.id})
+            Cars.remove({locationId: location.id})
 
             for (var i = 0; i < placemarks.length; i++) {
                 var placemark = placemarks[i];
-                Cars.insert(placemark);
-                // Cars.insert({
-                //     name: placemark.name,
-                //     locationId: location.id
-                // });
+                Cars.insert({
+                    name: placemark.name,
+                    fuel: placemark.fuel,
+                    locationId: location.id
+                });
             }
 
             console.log('updateCars:http: Found Cars -', carCount);
