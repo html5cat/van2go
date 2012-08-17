@@ -15,3 +15,7 @@ http://www.car2go.com/api/v2.1/locations?oauth_consumer_key=HandiCar&format=json
 
 Cars:
 http://www.car2go.com/api/v2.1/vehicles?&oauth_consumer_key=HandiCar&loc=sandiego&format=json
+
+License
+==========
+van2go is licensed under [Creative Commons Attribution-NonCommercial 3.0 license](http://creativecommons.org/licenses/by-nc/3.0/)
