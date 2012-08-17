@@ -18,6 +18,15 @@ Meteor.startup(function() {
     }
 
     updateCars()
+
+    Meteor.publish("locations", function() {
+        return Locations.find({});
+    });
+
+    Meteor.publish("cars", function(selectedLocation) {
+        return Cars.find({locationId: selectedLocation});
+    });
+
 });
 
 

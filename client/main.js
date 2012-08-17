@@ -1,3 +1,5 @@
+Meteor.subscribe("locations");
+
 function getSelectedLocation() {
     var locationId = Session.get("selected_location");
     if (!locationId) return null;
@@ -48,5 +50,6 @@ Template.location.events = {
         // Session.set("selected_location", this._id);
         console.log('Saving selected_location', this.id);
         Session.set("selected_location", this.id);
+        Meteor.subscribe("cars", this.id);
     }
 };
