@@ -47,6 +47,7 @@ function updateCars() {
 
             var data = JSON.parse(response.content);
 
+            // car2go API returns cars as elements of array placemarks
             var placemarks = data.placemarks
 
             // Update carCount for this location
@@ -54,15 +55,15 @@ function updateCars() {
             Locations.update({id: location.id}, {$set: {carCount: carCount} });
 
             // Sync the cars for this location.
-            Cars.remove({locationId: location.id})
+            // Cars.remove({locationId: location.id})
 
-        //     for (var i = 0; i < placemarks.length; i++) {
-        //         var placemark = placemarks[i];
-        //         Cars.insert({
-        //             name: placemark.name,
-        //             locationId: location.id
-        //         });
-        //     }
+            for (var i = 0; i < placemarks.length; i++) {
+                var placemark = placemarks[i];
+                Cars.insert({
+                    name: placemark.name,
+                    locationId: location.id
+                });
+            }
 
             console.log('updateCars:http: Found Cars -', carCount);
         });
