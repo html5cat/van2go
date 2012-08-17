@@ -59,10 +59,11 @@ function updateCars() {
 
             for (var i = 0; i < placemarks.length; i++) {
                 var placemark = placemarks[i];
-                Cars.insert({
-                    name: placemark.name,
-                    locationId: location.id
-                });
+                Cars.insert(placemark);
+                // Cars.insert({
+                //     name: placemark.name,
+                //     locationId: location.id
+                // });
             }
 
             console.log('updateCars:http: Found Cars -', carCount);
