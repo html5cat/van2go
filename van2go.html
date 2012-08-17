@@ -9,15 +9,17 @@
 </body>
 
 <template name="van2go">
-    <div class="leaderboard">
-        {{#each locations}}
-            {{> location}}
-        {{/each}}
+    <div class="city {{selected}}">
+        <span class="name"><strong>City</strong></span>
+        <span class="count"><strong>Total Cars</strong></span>
     </div>
+    {{#each locations}}
+        {{> location}}
+    {{/each}}
 
     {{#if selected_location}}
         <div class="details">
-            <div class="name">{{selected_location}} - {{selected_location_carCount}}</div>
+            <div class="name">{{selected_location}}</div>
             <ol>
                 {{#each cars}}
                     {{> car}}
@@ -32,10 +34,10 @@
 </template>
 
 <template name="location">
-    <div class="player {{selected}}">
+    <div class="city {{selected}}">
         <span class="name">{{name}}</span>
-        <span class="id">{{id}}</span>
         <span class="count">{{carCount}}</span>
+        <!-- <span class="id">id = {{id}}</span> -->
     </div>
 </template>
 

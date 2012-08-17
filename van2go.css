@@ -16,31 +16,29 @@ body {
     margin: 0 auto;
 }
 
-.player {
+.city {
     cursor: pointer;
     padding: 5px;
 }
 
-.player .name {
+.city .name {
     display: inline-block;
     width: 300px;
     font-size: 1.75em;
 }
 
-.player .score {
+.city .count {
     display: inline-block;
+    font-size: 14px;
     width: 100px;
     text-align: right;
-    font-size: 2em;
-    font-weight: bold;
-    color: #777;
 }
 
-.player.selected {
-    background-color: yellow;
+.city.selected {
+    background-color: #009EE0;
 }
 
-.player.selected .score {
+.city.selected .count {
     color: black;
 }
 
