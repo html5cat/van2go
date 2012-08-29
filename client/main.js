@@ -21,29 +21,9 @@ Template.van2go.selected_location = function () {
     return location && location.name;
 };
 
-// Template.van2go.selected_location_carCount = function () {
-//     var locationId = Session.get("selected_location")
-//     // var result = Cars.find({locationId: locationId}).count();
-//     return -1;
-// };
-
 Template.location.selected = function () {
     return Session.equals("selected_location", this.id) ? "selected" : '';
 };
-
-// Template.location.carCount = function () {
-//     // var result = Cars.find({locationId: this.id}).count();
-//     // console.log('carCount', result);
-//     // return result;
-//     return -1;
-// };
-
-
-// Template.van2go.events = {
-//   'click input.inc': function () {
-//     Players.update(Session.get("selected_player"), {$inc: {score: 5}});
-//   }
-// };
 
 Template.location.events = {
     'click': function () {

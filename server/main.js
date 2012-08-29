@@ -2,13 +2,19 @@
  * On startup, populate the Locations database.
  */
 Meteor.startup(function() {
+
+    // Limit database write to server side only
+    var collections = ['locations', 'cars'];
+
+    _.each(collections, function(collection) {
+        _.each(['insert', 'update', 'remove'], function(method) {
+            Meteor.default_server.method_handlers['/' + collection + '/' + method] = function() {};
+        });
+    });
+
     if (Locations.find().count() === 0) {
-    // if (1) {
         for (var i = 0; i < car2go.locations.length; i++) {
             var location = car2go.locations[i]
-
-            // If you just want Vancouver.
-            // if (location.locationId != 4) continue;
 
             Locations.insert({
                 name: location.locationName,
@@ -20,7 +26,7 @@ Meteor.startup(function() {
     updateCars()
 
     Meteor.publish("locations", function() {
-        return Locations.find({});
+        return Locations.find();
     });
 
     Meteor.publish("cars", function(selectedLocation) {
