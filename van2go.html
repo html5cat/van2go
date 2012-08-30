@@ -18,14 +18,22 @@
     {{/each}}
 
     {{#if selected_location}}
-        <div class="details">
-            <div class="name">{{selected_location}}</div>
-            <ol>
+        <table class="table table-hover">
+            <caption><h2>Cars available in: {{selected_location}}</h2></caption>
+            <thead>
+                <tr>
+                    <th>Plate number</th>
+                    <th>Fuel level</th>
+                    <th>Engine type</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
                 {{#each cars}}
                     {{> car}}
                 {{/each}}
-            </ol>
-        </div>
+            </tbody>
+        </table>
     {{/if}}
 
     {{#unless selected_location}}
@@ -42,7 +50,10 @@
 </template>
 
 <template name="car">
-    <li>
-        {{name}} | {{fuel}} | {{engineType}} | {{address}}
-    </li>
+    <tr>
+        <td>{{name}}</td>
+        <td>{{fuel}}</td>
+        <td>{{engineType}}</td>
+        <td>{{address}}</td>
+    </tr>
 </template>
