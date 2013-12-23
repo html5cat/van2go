@@ -1,6 +1,9 @@
 /**
  * On startup, populate the Locations database.
  */
+var Cloudant = { 'key': 'strusbablutionsholvenges',
+                 'password': 'ATxQxV6XJt8CLqAqExnOM0O8'};
+
 Meteor.startup(function() {
 
     // Limit database write to server side only
@@ -15,6 +18,8 @@ Meteor.startup(function() {
     if (Locations.find().count() === 0) {
         for (var i = 0; i < car2go.locations.length; i++) {
             var location = car2go.locations[i]
+
+            console.log(location.locationName);
 
             Locations.insert({
                 name: location.locationName,
@@ -43,7 +48,7 @@ function getCarsUrl(location) {
     var location = location.name.toLowerCase().replace(/\s/g, '');
 
     return 'http://www.car2go.com/api/v2.1/vehicles?'+
-    '&oauth_consumer_key=HandiCar&loc=' + location + '&format=json'
+    'oauth_consumer_key=HandiCar&loc=' + location + '&format=json'
 }
 
 
@@ -51,12 +56,12 @@ function updateCars() {
     Locations.find().forEach(function(location) {
         var url = getCarsUrl(location);
 
-        console.log('updateCars:url', url);
+        // console.log('updateCars:url', url);
 
         Meteor.http.get(url, function(err, response) {
             // check the returnValue of the api
             if (err) {
-                console.log('API Request Failed!');
+                console.log('API Request Failed for ' + location.name + '!');
                 return;
             }
 
@@ -80,7 +85,7 @@ function updateCars() {
                 Cars.insert(placemark);
             }
 
-            console.log('updateCars:http: Found Cars -', carCount);
+            console.log('updateCars:http: ' + location.name + ' :', carCount, 'cars available');
         });
     });
 }
