@@ -28,7 +28,7 @@ Meteor.startup(function() {
         }
     }
 
-    updateCars()
+    // updateCars()
 
     Meteor.publish("locations", function() {
         return Locations.find();
@@ -67,6 +67,8 @@ function updateCars() {
 
             var data = JSON.parse(response.content);
 
+            // Cloudant(data)
+
             // car2go API returns cars as elements of array placemarks
             var placemarks = data.placemarks
 
@@ -89,3 +91,23 @@ function updateCars() {
         });
     });
 }
+
+
+function saveToCloudant (obj) {
+    Meteor.http.call('POST', 'https://dybskiy.cloudant.com/car2go/',
+        { data: obj,
+          auth: Cloudant.key + ':' + Cloudant.password
+        },
+        function(err, response) {
+        // check the returnValue of the api
+        if (err) {
+            console.log('Cloudant', err, response);
+            return;
+        }
+
+        var data = JSON.parse(response.content);
+        console.log(data);
+        });
+    }
+
+saveToCloudant({'hello': 'world'});
