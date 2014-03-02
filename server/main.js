@@ -40,7 +40,7 @@ Meteor.startup(function() {
 
     Meteor.setInterval(function () {
         updateCars();
-    }, 300000);
+    }, 8640000); // take 10 snapshots per day to make 2 min video of the year @30fps
 });
 
 
@@ -119,5 +119,3 @@ function saveToCloudant (obj) {
         console.log(data);
         });
     }
-
-
