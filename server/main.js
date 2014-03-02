@@ -28,16 +28,19 @@ Meteor.startup(function() {
         }
     }
 
-    // updateCars()
 
     Meteor.publish("locations", function() {
         return Locations.find();
     });
 
-    Meteor.publish("cars", function(selectedLocation) {
-        return Cars.find({locationId: selectedLocation});
-    });
+    // Meteor.publish("cars", function(selectedLocation) {
+    //     return Cars.find({locationId: selectedLocation});
+    // });
 
+
+    Meteor.setInterval(function () {
+        updateCars();
+    }, 300000);
 });
 
 
@@ -61,31 +64,38 @@ function updateCars() {
         Meteor.http.get(url, function(err, response) {
             // check the returnValue of the api
             if (err) {
-                console.log('API Request Failed for ' + location.name + '!');
+                console.log('Car2Go API Request Failed for ' + location.name + '!');
                 return;
             }
 
             var data = JSON.parse(response.content);
 
-            // Cloudant(data)
+            console.log(location.id, location.name);
+            data.location = location.name;
+            data.locationID = location.id;
+            data.timestampUNIX = Math.round(+new Date()/1000);
+            data.timestamp = (new Date()).toJSON();
+
+            saveToCloudant(data);
 
             // car2go API returns cars as elements of array placemarks
-            var placemarks = data.placemarks
+            var placemarks = data.placemarks;
 
             // Update carCount for this location
             var carCount = Object.keys(placemarks).length;
-            Locations.update({id: location.id}, {$set: {carCount: carCount} });
 
-            // Sync the cars for this location.
-            Cars.remove({locationId: location.id})
+            // Locations.update({id: location.id}, {$set: {carCount: carCount} });
 
-            for (var i = 0; i < placemarks.length; i++) {
-                var placemark = placemarks[i];
+            // // Sync the cars for this location.
+            // Cars.remove({locationId: location.id})
 
-                placemark.locationId = location.id;
+            // for (var i = 0; i < placemarks.length; i++) {
+            //     var placemark = placemarks[i];
 
-                Cars.insert(placemark);
-            }
+            //     placemark.locationId = location.id;
+
+            //     Cars.insert(placemark);
+            // }
 
             console.log('updateCars:http: ' + location.name + ' :', carCount, 'cars available');
         });
@@ -110,4 +120,4 @@ function saveToCloudant (obj) {
         });
     }
 
-saveToCloudant({'hello': 'world'});
+
