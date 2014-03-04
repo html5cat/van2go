@@ -1,8 +1,8 @@
 /**
  * On startup, populate the Locations database.
  */
-var Cloudant = { 'key': 'strusbablutionsholvenges',
-                 'password': 'ATxQxV6XJt8CLqAqExnOM0O8'};
+var Cloudant = { 'key': 'thellyedlentedlifirlydre',
+                 'password': 'fgCFIHdVMRQTxhxyL0Cf5UVY'};
 
 Meteor.startup(function() {
 
@@ -104,7 +104,7 @@ function updateCars() {
 
 
 function saveToCloudant (obj) {
-    Meteor.http.call('POST', 'https://dybskiy.cloudant.com/car2go/',
+    Meteor.http.call('POST', 'https://dybskiy.cloudant.com/car2go-march-2014/',
         { data: obj,
           auth: Cloudant.key + ':' + Cloudant.password
         },
